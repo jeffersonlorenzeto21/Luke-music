@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luke Music - YouTube Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <h2><i class="fa-solid fa-music"></i> Luke Music</h2>
+            <ul>
+                <li class="active"><i class="fa-solid fa-house"></i> Início</li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header>
+                <h1>Pesquise qualquer música</h1>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <!-- Input com busca acionada ao apertar Enter -->
+                    <input type="text" id="search-input" placeholder="Digite o nome de qualquer música ou artista...">
+                </div>
+            </header>
+
+            <section class="playlist-section">
+                <h3 id="section-title">Resultados da Pesquisa</h3>
+                <div class="grid-songs" id="song-list">
+                    <p style="color: #b3b3b3;">Digite algo na barra de busca acima para encontrar músicas instantaneamente!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Player de Vídeo/Áudio Oculto do YouTube -->
+    <div id="youtube-player-container" style="display:none;">
+        <div id="yt-player"></div>
+    </div>
+
+    <!-- Barra de Reprodução Inferior -->
+    <footer class="player-bar">
+        <div class="song-info">
+            <span id="current-title">Nenhuma música tocando</span>
+            <span id="current-artist" class="artist-sub">-</span>
+        </div>
+        <div class="player-controls">
+            <button id="play-btn"><i class="fa-solid fa-play"></i></button>
+        </div>
+    </footer>
+
+    <!-- Script da API do YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
