@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luke Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <h2><i class="fa-solid fa-music"></i> Luke Music</h2>
+            <ul>
+                <li class="active" onclick="goHome()"><i class="fa-solid fa-house"></i> Início</li>
+                <li onclick="showFavorites()"><i class="fa-solid fa-heart"></i> Minhas Playlists</li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header>
+                <h1>O que você quer ouvir?</h1>
+                <!-- Barra de Pesquisa com Botão Dedicado -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Digite o nome da música ou artista...">
+                    <button id="search-btn">Buscar</button>
+                </div>
+            </header>
+
+            <!-- Filtros por Gênero -->
+            <section class="genres-section">
+                <button class="genre-btn active" onclick="filterGenre('all')">Todos</button>
+                <button class="genre-btn" onclick="filterGenre('Rock')">Rock</button>
+                <button class="genre-btn" onclick="filterGenre('Sertanejo')">Sertanejo</button>
+                <button class="genre-btn" onclick="filterGenre('Reggae')">Reggae</button>
+                <button class="genre-btn" onclick="filterGenre('Lofi')">Lofi</button>
+            </section>
+
+            <!-- Seção de Sugestões / Mais Tocadas -->
+            <section class="playlist-section">
+                <h3 id="section-title">🔥 Mais Tocadas & Sugestões</h3>
+                <div class="grid-songs" id="song-list">
+                    <!-- Preenchido via JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Player Oculto do YouTube -->
+    <div id="youtube-player-container" style="display:none;">
+        <div id="yt-player"></div>
+    </div>
+
+    <!-- Barra de Reprodução Inferior (Estilo Spotify) -->
+    <footer class="player-bar">
+        <div class="song-info">
+            <span id="current-title">Selecione uma música</span>
+            <span id="current-artist" class="artist-sub">-</span>
+        </div>
+        <div class="player-controls">
+            <button id="play-btn"><i class="fa-solid fa-play"></i></button>
+            <button id="favorite-btn" onclick="toggleFavorite()"><i class="fa-regular fa-heart"></i></button>
+        </div>
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
