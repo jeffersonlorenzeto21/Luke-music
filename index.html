@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luke Music - Streaming</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configurações para Ícone na Tela de Início (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1db954">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Luke Music">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluents/512/audio-wave.png">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Conteúdo Dinâmico das Telas -->
+        <main class="main-content" id="main-view">
+            <!-- Tela Inicial -->
+            <div id="screen-home" class="screen active">
+                <div class="brand-header">
+                    <div class="logo-icon"><i class="fa-solid fa-wave-square"></i></div>
+                    <h2>Luke Music</h2>
+                </div>
+                <h1 class="greeting-title">Boas-vindas</h1>
+                <div class="home-grid">
+                    <div class="home-card" onclick="openGenre('Sertanejo')" style="background: linear-gradient(135deg, #b05700, #e67e22);">
+                        <span>Sertanejo</span>
+                        <i class="fa-solid fa-hat-cowboy"></i>
+                    </div>
+                    <div class="home-card" onclick="openGenre('Rock')" style="background: linear-gradient(135deg, #78281f, #c0392b);">
+                        <span>Rock</span>
+                        <i class="fa-solid fa-guitar"></i>
+                    </div>
+                    <div class="home-card" onclick="openGenre('Lofi')" style="background: linear-gradient(135deg, #1b4f72, #2980b9);">
+                        <span>Lofi & Chill</span>
+                        <i class="fa-solid fa-cloud-moon"></i>
+                    </div>
+                    <div class="home-card" onclick="openGenre('Reggae')" style="background: linear-gradient(135deg, #1e8449, #27ae60);">
+                        <span>Reggae</span>
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela Buscar -->
+            <div id="screen-search" class="screen">
+                <h1>Busca Universal</h1>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="O que você quer ouvir?">
+                    <button id="search-btn">Buscar</button>
+                </div>
+                <div class="grid-songs" id="song-list">
+                    <p style="color: #b3b3b3;">Pesquise qualquer artista ou música do mundo...</p>
+                </div>
+            </div>
+
+            <!-- Tela de Detalhes do Gênero -->
+            <div id="screen-genre" class="screen">
+                <button class="back-btn" onclick="switchScreen('home')"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                <h1 id="genre-title-screen" style="margin-top: 15px;">Sertanejo</h1>
+                <p class="genre-subtitle">As melhores playlists e faixas do momento</p>
+                <div class="grid-songs" id="genre-song-list"></div>
+            </div>
+
+            <!-- Tela Biblioteca -->
+            <div id="screen-library" class="screen">
+                <h1 style="margin-bottom: 20px;">Sua Biblioteca</h1>
+                <div class="library-tabs">
+                    <button class="lib-tab active">Músicas Curtidas</button>
+                </div>
+                <div class="grid-songs" id="library-list" style="margin-top: 20px;">
+                    <p style="color: #b3b3b3;">Você ainda não favoritou nenhuma música.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Player do YouTube com dimensões reais e opacidade sutil (Evita bloqueio do navegador) -->
+    <div id="youtube-player-container" style="position: absolute; bottom: 0; left: 0; z-index: -1; pointer-events: none;">
+        <div id="yt-player" style="width: 300px; height: 150px; opacity: 0.05;"></div>
+    </div>
+
+    <!-- Mini Player / Barra Inferior Fixa (Estilo Spotify) -->
+    <footer class="player-bar">
+        <div class="song-info">
+            <span id="current-title">Selecione uma música</span>
+            <span id="current-artist" class="artist-sub">-</span>
+        </div>
+        <div class="player-controls">
+            <button id="favorite-btn" onclick="toggleFavorite()"><i class="fa-regular fa-heart"></i></button>
+            <button id="play-btn"><i class="fa-solid fa-play"></i></button>
+        </div>
+    </footer>
+
+    <!-- Barra de Navegação Inferior -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchScreen('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Início</span>
+        </button>
+        <button class="nav-item" onclick="switchScreen('search')">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar</span>
+        </button>
+        <button class="nav-item" onclick="switchScreen('library')">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Biblioteca</span>
+        </button>
+    </nav>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
